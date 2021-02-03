@@ -6,7 +6,13 @@
         <field name="model">inventory.consolidated</field>
         <field name="arch" type="xml">
             <tree string="Inventory Consolidated Report">
-                <field name="location_id"/>
+                <field name="name"/>
+                <field name="location_id" invisible="1"/>
+                <field name="product_id"/>
+                <field name="qty"/>
+                <field name="product_uom_id"/>
+                <field name="package_id"/>
+<!--                <field name="product_qty"/>-->
             </tree>
         </field>
     </record>
@@ -15,7 +21,7 @@
     <act_window id="action_inventory_consolidated_report"
         name="Inventory Consolidated Report"
         res_model="inventory.consolidated"
-        />
+    />
 
     <menuitem id="stock_move_menu" name="Inventory Consolidated Report"
               parent="stock.menu_warehouse_report"
