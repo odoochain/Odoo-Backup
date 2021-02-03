@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wizard_sale_productcate_report" model="ir.ui.view">
+            <field name="name">sale.productcate.wzd.form.view</field>
+            <field name="model">sale.productcate</field>
+            <field name="arch" type="xml">
+                <form string="Product Category Wise Sales Report">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+					<group>
+                        <group>
+                            <field name="categ_id"/>
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="sale_productcate_report" string="Print Report" class="oe_highlight"
+                                type="object"/>
+                        Or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_wizard_sale_productcate_report" model="ir.actions.act_window">
+			<field name="name">Product Category Wise Sales Report</field>
+			<field name="res_model">sale.productcate</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wizard_sale_productcate_report" />
+			<field name="target">new</field>
+		</record>
+
+        <menuitem id="menu_action_wizard_sale_productcate_report"
+                  name="Product Category Wise Sales Report"
+                  action="action_wizard_sale_productcate_report"
+                  parent="sales_team.menu_sale_report"
+                  sequence="4"/>
+    </data>
+</odoo>

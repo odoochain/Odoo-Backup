@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="action_report_sales_wise"
+                string="Sale Person Wise Report"
+                model="sale.salesperson.report"
+                report_type="qweb-pdf"
+                file="sales_report_by_saleperson.saleperson_report"
+                name="sales_report_by_saleperson.saleperson_report"
+        />
+        <report
+                id="action_report_collection_saleperson_wise"
+                string="Sale Person Wise Collection Report"
+                model="sale.collection"
+                report_type="qweb-pdf"
+                file="sales_report_by_saleperson.sale_collection_report"
+                name="sales_report_by_saleperson.sale_collection_report"
+        />
+        <report
+                id="action_report_sales_saleperson_wise"
+                string="Sale Person Wise Collection Report"
+                model="sale.saleperson"
+                report_type="qweb-pdf"
+                file="sales_report_by_saleperson.sale_saleperson_report"
+                name="sales_report_by_saleperson.sale_saleperson_report"
+        />
+        <report
+                id="action_report_sales_productcate_wise"
+                string="Product Category Wise Sales Report"
+                model="sale.productcate"
+                report_type="qweb-pdf"
+                file="sales_report_by_saleperson.sale_productcate_report"
+                name="sales_report_by_saleperson.sale_productcate_report"
+        />
+    </data>
+</odoo>

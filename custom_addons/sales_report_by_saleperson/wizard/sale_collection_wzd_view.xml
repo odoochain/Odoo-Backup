@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_collection_wizard_form_view" model="ir.ui.view">
+            <field name="name">sale.collection.wizard.form.view</field>
+            <field name="model">sale.collection</field>
+            <field name="arch" type="xml">
+                <form string="Collection Report By Sale Person">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="user_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="print_sale_collection_report" string="Print Report" class="oe_highlight"
+                                type="object"/>
+                        Or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_collection_report_salesperson_wizard" model="ir.actions.act_window">
+            <field name="name">Collection Report By Sale Person</field>
+            <field name="res_model">sale.collection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_collection_report_salesperson_wizard"
+                  name="Collection By Sale-Person"
+                  action="action_collection_report_salesperson_wizard"
+                  parent="sales_team.menu_sale_report"
+                  sequence="2"/>
+    </data>
+</odoo>

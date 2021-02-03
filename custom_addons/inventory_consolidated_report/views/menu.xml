@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--tree view for test-->
+    <record id="view_tree_inventory_consolidated_report" model="ir.ui.view">
+        <field name="name">inventory.consolidated.tree</field>
+        <field name="model">inventory.consolidated</field>
+        <field name="arch" type="xml">
+            <tree string="Inventory Consolidated Report">
+                <field name="location_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--action of inventory consolidated report menu-->
+    <act_window id="action_inventory_consolidated_report"
+        name="Inventory Consolidated Report"
+        res_model="inventory.consolidated"
+        />
+
+    <menuitem id="stock_move_menu" name="Inventory Consolidated Report"
+              parent="stock.menu_warehouse_report"
+              action="action_inventory_consolidated_report"/>
+</odoo>

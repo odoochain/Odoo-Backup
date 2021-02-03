@@ -1,0 +1,1 @@
+import inventory_consolidated_report

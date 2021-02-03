@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_wizard_sale_saleperson_report" model="ir.ui.view">
+            <field name="name">sale.saleperson.wzd.form.view</field>
+            <field name="model">sale.saleperson</field>
+            <field name="arch" type="xml">
+                <form string="Date Wise Report By Sale Person">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="sale_saleperson_report" string="Print Report" class="oe_highlight"
+                                type="object"/>
+                        Or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_wizard_sale_saleperson_report" model="ir.actions.act_window">
+			<field name="name">Date Wise Report By Sale Person</field>
+			<field name="res_model">sale.saleperson</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_wizard_sale_saleperson_report" />
+			<field name="target">new</field>
+		</record>
+
+        <menuitem id="menu_action_wizard_sale_saleperson_report"
+                  name="Date Wise by Sale-Person"
+                  action="action_wizard_sale_saleperson_report"
+                  parent="sales_team.menu_sale_report"
+                  sequence="3"/>
+    </data>
+</odoo>

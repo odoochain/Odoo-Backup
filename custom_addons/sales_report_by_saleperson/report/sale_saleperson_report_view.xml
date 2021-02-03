@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_saleperson_report">
+        <t t-call="report.external_layout">
+            <div class="page">
+                <div class="oe_structure"/>
+                    <div class="row">
+                    <center>
+                        <b>
+                            <h4>Sale Person Report By Date</h4>
+                        </b>
+                    </center>
+						<div class="">
+	                        <div class="col-xs-5">
+								<p>
+									Date from : <span t-esc="from_date"/><br />
+									Date to : <span t-esc="to_date"/>
+								</p>
+							</div>
+							<div class="col-xs-3"></div>
+							<div class="col-xs-4">
+								<p>
+									Printing Date : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d, %I:%M%p')"/><br />
+									Printing By : <span t-esc="user.name"/>
+								</p>
+	                        </div>
+	                        <t t-set="total_sum" t-value="0"/>
+	                        <t t-set="total_pati" t-value="0"/>
+                        <table class="table table-condensed" style="border: 1px solid black;">
+                            <thead>
+                                <tr style="border: 1px solid black;">
+                                	<th style="border: 1px solid black;">S/N</th>
+                                    <th style="border: 1px solid black;">User Name</th>
+                                    <th style="border: 1px solid black;">Full Name</th>
+                                    <th style="border: 1px solid black;">Total Patient</th>
+                                    <th style="border: 1px solid black;">Amount</th>
+
+                                </tr>
+                                <tr t-foreach="lines" t-as="line">
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="line_index+1"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="line['user_name']"/>                                        
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="line['full_name']"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="line['patient']"/>
+                                        <t t-set="total_pati" t-value="total_pati + line['patient']"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                    <span t-esc="line['total']"/>
+                                        <t t-set="total_sum" t-value="total_sum + line['total']"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black;">
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                    <b>Total Amount:</b>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="total_pati"/>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span t-esc="total_sum"/>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+	                   	</div>
+						<br/>
+                    </div>
+                    <br/>
+
+            </div>
+        </t>
+    </template>
+</odoo>
