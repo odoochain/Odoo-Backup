@@ -15,7 +15,12 @@ class SaleCollection(models.TransientModel):
 
     @api.multi
     def print_sale_collection_report(self):
-        sale_collection = self.env['account.payment'].search([('state', '=', 'posted')])
+        sale_collection = self.env['account.payment'].search(
+            [('state', '=', 'posted'), ('payment_type', '=', 'inbound')])
+
+        # second section of tuple ('payment_type', '=', 'inbound') filter outs the out invoices and prints only in
+        # invoices
+
         groupby_dict = {}
         for user in self.user_ids:
             filtered_order = list(filter(lambda x: x.create_uid == user, sale_collection))
@@ -41,4 +46,4 @@ class SaleCollection(models.TransientModel):
             'end_date': self.end_date,
 
         }
-        return self.env['report'].get_action(self,'sales_report_by_saleperson.sale_collection_report', data=datas)
+        return self.env['report'].get_action(self, 'sales_report_by_saleperson.sale_collection_report', data=datas)
