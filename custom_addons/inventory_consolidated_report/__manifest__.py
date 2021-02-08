@@ -7,12 +7,11 @@
     "version": "1.0.0.0",
     "author": "Shamsul Arifin",
     "category": "Stock",
-    'summary': 'Allow to add advance payments on sales',
+    'summary': 'User can view consolidated report of inventory',
     'company': 'Crystal Technology Bangladesh Ltd.',
     'website': 'www.ctechbd.com',
-    "description": """Allow to add advance payments on sales and then use its
- on invoices""",
-    "depends": ["base", "sale", "account"],
+    "description": """User can view consolidated report of inventory""",
+    "depends": ["base", "sale", "account", "stock"],
     "data": ["views/menu.xml"],
 
     "installable": True,

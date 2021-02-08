@@ -9,7 +9,7 @@
     'version': '10.0.0.4',
     'summary': 'This module provides Sales Report By Sales person.',
     'website': ' ',
-    'author': 'Shamim',
+    'author': 'Crystal Technology',
     'license': 'AGPL-3',
     'description': '''This module provides Sales Report By Sale Person.
                       '''
