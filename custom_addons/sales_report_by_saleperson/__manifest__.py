@@ -6,10 +6,10 @@
 {
     'name': 'Sales Report By Sale Person',
     'category': 'sale',
-    'version': '10.0.0.4',
+    'version': '10.0.0.6',
     'summary': 'This module provides Sales Report By Sales person.',
     'website': ' ',
-    'author': 'Crystal Technology',
+    'author': 'Crystal Technology Bangladesh Ltd.',
     'license': 'AGPL-3',
     'description': '''This module provides Sales Report By Sale Person.
                       '''

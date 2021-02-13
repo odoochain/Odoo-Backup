@@ -15,9 +15,7 @@ class SaleCollection(models.TransientModel):
 
     @api.multi
     def print_sale_collection_report(self):
-        sale_collection = self.env['account.payment'].search(
-            [('state', '=', 'posted')])
-
+        sale_collection = self.env['account.payment'].search([('state', '=', 'posted')])
         groupby_dict = {}
         for user in self.user_ids:
             filtered_order = list(filter(lambda x: x.create_uid == user, sale_collection))
@@ -34,11 +32,11 @@ class SaleCollection(models.TransientModel):
                 temp_2.append(order.payment_date)
                 temp_2.append(order.payment_type)
                 if order.payment_type == 'outbound':
-                    order.amount = -1 * order.amount
-                    temp_2.append(order.amount)
+                    order.amounts = -1 * order.amount
+                    temp_2.append(order.amounts)
                 else:
-                    order.amount = 1 * order.amount
-                    temp_2.append(order.amount)
+                    order.amounts = 1 * order.amount
+                    temp_2.append(order.amounts)
                 temp.append(temp_2)
             final_dict[user] = temp
         datas = {
@@ -49,4 +47,4 @@ class SaleCollection(models.TransientModel):
             'end_date': self.end_date,
 
         }
-        return self.env['report'].get_action(self, 'sales_report_by_saleperson.sale_collection_report', data=datas)
+        return self.env['report'].get_action(self,'sales_report_by_saleperson.sale_collection_report', data=datas)

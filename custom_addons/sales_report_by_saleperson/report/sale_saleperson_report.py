@@ -4,6 +4,7 @@
 ##############################################################################
 from odoo import api, models
 from datetime import datetime
+from datetime import timedelta
 
 class SaleSalepersonReport(models.AbstractModel):
     _name = 'report.sales_report_by_saleperson.sale_saleperson_report'
@@ -26,6 +27,20 @@ class SaleSalepersonReport(models.AbstractModel):
                         WHERE state= 'sale' AND date_order BETWEEN %s AND %s
                         GROUP BY p.login, r.name """
             print "========================--date-if-==================================="
+            print start_date, end_date
+            params = (start_date, end_date)
+            self.env.cr.execute(sql_query, params)
+            res = self.env.cr.dictfetchall()
+            print res
+            return res
+        elif start_date == end_date:
+            #date_1 = datetime.datetime.strptime(self.end_date, "%Y-%m-%d")
+            #endd_date = date_1 + datetime.timedelta(days=1)
+            sql_query = """ SELECT p.login as user_name, r.name as full_name, Count(s.user_id) as patient, sum(s.amount_total) as total
+                        FROM sale_order s left join res_users p on p.id = s.user_id left join res_partner r on  r.id = p.partner_id
+                        WHERE state= 'sale' AND Date_trunc('day', date_order) BETWEEN %s AND %s
+                        GROUP BY p.login, r.name """
+            print "========================--date-ifif-==================================="
             print start_date, end_date
             params = (start_date, end_date)
             self.env.cr.execute(sql_query, params)

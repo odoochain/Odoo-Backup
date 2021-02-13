@@ -39,46 +39,49 @@
                                     <th style="border: 1px solid black;">Amount</th>
 
                                 </tr>
-                                <tr t-foreach="lines" t-as="line">
-                                    <td style="border: 1px solid black;">
-                                        <span t-esc="line_index+1"/>
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                        <span t-esc="line['category_name']"/>                                        
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                        <span t-esc="line['product_name']"/>
-                                    </td>
-                                     <td style="border: 1px solid black;">
-                                        <span t-esc="line['date']"/>
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                        <span t-esc="line['quantity']"/>
-                                        <t t-set="total_pati" t-value="total_pati + line['quantity']"/>
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                    <span t-esc="line['total']"/>
-                                        <t t-set="total_sum" t-value="total_sum + line['total']"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black;">
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                    <b>Total:</b>
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                        <span t-esc="total_pati"/>
-                                    </td>
-                                    <td style="border: 1px solid black;">
-                                        <span t-esc="total_sum"/>
-                                    </td>
-                                </tr>
-                            </thead>
+	                          </thead>
+	                          <tbody>
+	                                <tr t-foreach="lines" t-as="line">
+	                                    <td style="border: 1px solid black;">
+	                                        <span t-esc="line_index+1"/>
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                        <span t-esc="line['category_name']"/>                                        
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                        <span t-esc="line['product_name']"/>
+	                                    </td>
+	                                     <td style="border: 1px solid black;">
+	                                        <span t-esc="line['date']"/>
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                        <span t-esc="line['quantity']"/>
+	                                        <t t-set="total_pati" t-value="total_pati + line['quantity']"/>
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                    <span t-esc="line['total']"/>
+	                                        <t t-set="total_sum" t-value="total_sum + line['total']"/>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                    <td style="border: 1px solid black;">
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                    <b>Total:</b>
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                        <span t-esc="total_pati"/>
+	                                    </td>
+	                                    <td style="border: 1px solid black;">
+	                                        <span t-esc="total_sum"/>
+	                                    </td>
+	                                </tr>
+                                </tbody>
+                            
                         </table>
 	                   	</div>
 						<br/>

@@ -22,10 +22,10 @@ class SaleProductcateReport(models.AbstractModel):
         if end_date == datetime.now().strftime('%Y-%m-%d'):
             end_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')    
             if categ_id:
-                sql_query = """ SELECT c.name as category_name, s.name as product_name, s.qty_Invoiced as quantity, s.price_subtotal as total, s.create_date as date, s.invoice_status
-                            FROM sale_order_line s left join product_template p on p.id = s.product_id left join product_category c on  c.id = p.categ_id
-                            where invoice_status = 'invoiced' and c.name = %s and s.create_date BETWEEN %s AND %s
-                            ORDER BY category_name ASC """
+                sql_query = """ SELECT c.name as category_name, p.name as product_name, round(s.qty_invoiced,2) as quantity, round(s.price_total,2) as total, s.date as date
+                                FROM sale_report s inner join product_template p on s.product_tmpl_id = p.id inner join product_category c on s.categ_id = c.id
+                                where s.qty_invoiced > '0' and c.name = %s and s.date BETWEEN %s AND %s
+                                ORDER BY category_name ASC """
                 print start_date, end_date
                 params = (categ_id.name, start_date, end_date)
                 self.env.cr.execute(sql_query, params)
@@ -33,9 +33,32 @@ class SaleProductcateReport(models.AbstractModel):
                 print res
                 return res
             else:
-                sql_query = """ SELECT c.name as category_name, s.name as product_name, s.qty_Invoiced as quantity, s.price_subtotal as total, s.create_date as date, s.invoice_status
-                                FROM sale_order_line s left join product_template p on p.id = s.product_id left join product_category c on  c.id = p.categ_id
-                                where invoice_status = 'invoiced' and s.create_date BETWEEN %s AND %s
+                sql_query = """ SELECT c.name as category_name, p.name as product_name, round(s.qty_invoiced,2) as quantity, round(s.price_total,2) as total, s.date as date
+                                FROM sale_report s inner join product_template p on s.product_tmpl_id = p.id inner join product_category c on s.categ_id = c.id
+                                where s.qty_invoiced > '0' and s.date BETWEEN %s AND %s
+                                ORDER BY category_name ASC """ 
+                print start_date, end_date
+                params = (start_date, end_date)
+                self.env.cr.execute(sql_query, params)
+                res = self.env.cr.dictfetchall()
+                print res
+                return res
+        elif start_date == end_date:
+            if categ_id:
+                sql_query = """ SELECT c.name as category_name, p.name as product_name, round(s.qty_invoiced,2) as quantity, round(s.price_total,2) as total, s.date as date
+                                FROM sale_report s inner join product_template p on s.product_tmpl_id = p.id inner join product_category c on s.categ_id = c.id
+                                where s.qty_invoiced > '0' and c.name = %s and Date_trunc('day', s.date) BETWEEN %s AND %s
+                                ORDER BY category_name ASC """
+                print start_date, end_date
+                params = (categ_id.name, start_date, end_date)
+                self.env.cr.execute(sql_query, params)
+                res = self.env.cr.dictfetchall()
+                print res
+                return res
+            else:
+                sql_query = """ SELECT c.name as category_name, p.name as product_name, round(s.qty_invoiced,2) as quantity, round(s.price_total,2) as total, s.date as date
+                                FROM sale_report s inner join product_template p on s.product_tmpl_id = p.id inner join product_category c on s.categ_id = c.id
+                                where s.qty_invoiced > '0' and Date_trunc('day', s.date) BETWEEN %s AND %s
                                 ORDER BY category_name ASC """ 
                 print start_date, end_date
                 params = (start_date, end_date)
@@ -45,10 +68,10 @@ class SaleProductcateReport(models.AbstractModel):
                 return res
         else:
             if categ_id:
-                sql_query = """ SELECT c.name as category_name, s.name as product_name, s.qty_Invoiced as quantity, s.price_subtotal as total, s.create_date as date, s.invoice_status
-                            FROM sale_order_line s left join product_template p on p.id = s.product_id left join product_category c on  c.id = p.categ_id
-                            where invoice_status = 'invoiced' and c.name = %s and s.create_date BETWEEN %s AND %s
-                            ORDER BY category_name ASC """
+                sql_query = """ SELECT c.name as category_name, p.name as product_name, round(s.qty_invoiced,2) as quantity, round(s.price_total,2) as total, s.date as date
+                                FROM sale_report s inner join product_template p on s.product_tmpl_id = p.id inner join product_category c on s.categ_id = c.id
+                                where s.qty_invoiced > '0' and c.name = %s and s.date BETWEEN %s AND %s
+                                ORDER BY category_name ASC """
                 print start_date, end_date
                 params = (categ_id.name, start_date, end_date)
                 self.env.cr.execute(sql_query, params)
@@ -56,9 +79,9 @@ class SaleProductcateReport(models.AbstractModel):
                 print res
                 return res
             else:
-                sql_query = """ SELECT c.name as category_name, s.name as product_name, s.qty_Invoiced as quantity, s.price_subtotal as total, s.create_date as date, s.invoice_status
-                                FROM sale_order_line s left join product_template p on p.id = s.product_id left join product_category c on  c.id = p.categ_id
-                                where invoice_status = 'invoiced' and s.create_date BETWEEN %s AND %s
+                sql_query = """ SELECT c.name as category_name, p.name as product_name, round(s.qty_invoiced,2) as quantity, round(s.price_total,2) as total, s.date as date
+                                FROM sale_report s inner join product_template p on s.product_tmpl_id = p.id inner join product_category c on s.categ_id = c.id
+                                where s.qty_invoiced > '0' and s.date BETWEEN %s AND %s
                                 ORDER BY category_name ASC """ 
                 print start_date, end_date
                 params = (start_date, end_date)

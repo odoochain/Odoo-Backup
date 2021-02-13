@@ -16,7 +16,8 @@
                     </group>
 					<group>
                         <group>
-                            <field name="categ_id"/>
+                        <field name="categ_id" filter_domain="[('categ_id', 'child_of', self)]"/>
+                            <!-- <field name="categ_id"/> -->
                         </group>
                         <group>
                             
