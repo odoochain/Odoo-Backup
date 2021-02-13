@@ -54,6 +54,7 @@ class account_abstract_payment(models.AbstractModel):
         if not self.amount > 0.0:
             raise ValidationError(_('The payment amount must be strictly positive.'))
 
+
     @api.one
     @api.depends('payment_type', 'journal_id')
     def _compute_hide_payment_method(self):

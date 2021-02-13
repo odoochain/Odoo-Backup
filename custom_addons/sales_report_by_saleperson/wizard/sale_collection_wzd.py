@@ -16,10 +16,7 @@ class SaleCollection(models.TransientModel):
     @api.multi
     def print_sale_collection_report(self):
         sale_collection = self.env['account.payment'].search(
-            [('state', '=', 'posted'), ('payment_type', '=', 'inbound')])
-
-        # second section of tuple ('payment_type', '=', 'inbound') filter outs the out invoices and prints only in
-        # invoices
+            [('state', '=', 'posted')])
 
         groupby_dict = {}
         for user in self.user_ids:
@@ -35,7 +32,13 @@ class SaleCollection(models.TransientModel):
                 temp_2 = []
                 temp_2.append(order.name)
                 temp_2.append(order.payment_date)
-                temp_2.append(order.amount)
+                temp_2.append(order.payment_type)
+                if order.payment_type == 'outbound':
+                    order.amount = -1 * order.amount
+                    temp_2.append(order.amount)
+                else:
+                    order.amount = 1 * order.amount
+                    temp_2.append(order.amount)
                 temp.append(temp_2)
             final_dict[user] = temp
         datas = {
