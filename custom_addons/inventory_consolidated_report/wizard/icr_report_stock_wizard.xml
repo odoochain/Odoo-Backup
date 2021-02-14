@@ -10,8 +10,11 @@
                 <form string="Inventory Consolidated Report">
                     <group>
                         <group>
-                            <field name="test"/>
-<!--                            <field name="product_ids" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>-->
+                            <field name="product_ids" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>
+                            <field name="categ_ids" domain="[('type', '=', 'normal')]" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>
+                        </group>
+                        <group>
+                            <field name="location_ids" domain="[('usage', '=', 'internal')]" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>
                         </group>
                     </group>
 
