@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+
+        <record id="icr_report_stock_form_view" model="ir.ui.view">
+            <field name="name">icr.report.stock.form.view</field>
+            <field name="model">icr.report.stock</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+
+                <form string="Inventory Consolidated Report">
+                    <group>
+                        <group>
+                            <field name="test"/>
+<!--                            <field name="product_ids" widget="many2many_tags" options="{'no_create':True, 'no_open':True}"/>-->
+                        </group>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="icr_action_report_stock_xlsx" model="ir.actions.act_window">
+            <field name="name">Inventory Consolidated Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">icr.report.stock</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="icr_report_stock_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="icr_menu_report_stock_xlsx" action="icr_action_report_stock_xlsx" parent="stock.menu_warehouse_report"/>
+
+    </data>
+</odoo>
