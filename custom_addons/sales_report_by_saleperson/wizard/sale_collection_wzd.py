@@ -31,6 +31,10 @@ class SaleCollection(models.TransientModel):
                 temp_2.append(order.name)
                 temp_2.append(order.payment_date)
                 temp_2.append(order.payment_type)
+
+                # separating 'outbound' payments and 'inbound' payments
+                # and adding '-' with 'outbound' payments to subtract the refund amounts from collection
+
                 if order.payment_type == 'outbound':
                     order.amounts = -1 * order.amount
                     temp_2.append(order.amounts)
