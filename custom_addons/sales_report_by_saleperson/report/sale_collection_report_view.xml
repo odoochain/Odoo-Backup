@@ -63,6 +63,20 @@
 											<t t-set="total_sum" t-value="total_sum + order[3]"/>
 										</td>
                                 	</tr>
+                                    <tr>
+                                        <td style="border: 1px solid black;">
+                                        </td>
+                                        <td style="border: 1px solid black;">
+                                        </td>
+                                        <td style="border: 1px solid black;">
+                                        </td>
+                                        <td style="border: 1px solid black;">
+                                            <b>Total Amount:</b>
+                                        </td>
+                                        <td style="border: 1px solid black;">
+                                            <span t-esc="total_sum"/>
+                                        </td>
+                                    </tr>
                                 </tbody>
                         </table>
                     </t>
