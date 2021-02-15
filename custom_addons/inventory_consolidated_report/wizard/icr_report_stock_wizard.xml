@@ -18,6 +18,12 @@
                         </group>
                     </group>
 
+                    <footer>
+                        <button name="print_excel_report" string="Export" type="object" class="oe_highlight"/>
+                        <label string=" or "/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+
                 </form>
             </field>
         </record>
